@@ -30,7 +30,7 @@ public class OnlineShopController {
 	 ***************/
 	@RequestMapping("/") 
 	public String home(){
-	    return "Menuprimario"; 
+	    return "Menuprimario 22"; 
 	} 
 	
 	@RequestMapping("/logInUser")

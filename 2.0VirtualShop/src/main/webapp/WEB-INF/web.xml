@@ -9,13 +9,13 @@
 </servlet>
   <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
-        <url-pattern>*.jsp</url-pattern>
+        <url-pattern>Menu.html</url-pattern>
     </servlet-mapping>     
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
-        <url-pattern>/menu.jsp</url-pattern>
+        <url-pattern>/Menu.html</url-pattern>
     </servlet-mapping>     
   <welcome-file-list>
-    <welcome-file>Menu.jsp</welcome-file>   
+    <welcome-file>Menu.html</welcome-file>   
   </welcome-file-list>
 </web-app>

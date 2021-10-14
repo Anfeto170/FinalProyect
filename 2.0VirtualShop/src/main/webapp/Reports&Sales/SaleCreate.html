@@ -106,10 +106,25 @@
 		var unidades = document.getElementById("txtCantidad");
 		var price = select.options[select.selectedIndex].text.split(":")[1];
 		// alert(select.options[select.selectedIndex].text);
-		alert(price);
-		alert(unidades.value);
-		var Total = parseFloat(price, 2) * parseFloat(unidades.value, 2);
-		document.getElementById("lblTotal").innerText = Total;
+
+		//alert(price);
+		//alert(unidades.value);
+		//var Total = parseFloat(price, 2) * parseFloat(unidades.value, 2);
+		//document.getElementById("lblTotal").innerText = Total;
+	}
+
+	function totales() {
+		var select = document.getElementById("sltProducts");
+		var unidades = document.getElementById("txtCantidad");
+		var price = select.options[select.selectedIndex].text.split(":")[1];
+		var Subtotal = parseFloat(price, 2) * parseFloat(unidades.value, 2);
+		var IVA = Subtotal * 0.19;
+		var Total = IVA + Subtotal;
+
+		document.getElementById("lblTotal").innerText = Subtotal;
+		document.getElementById("IVA").innerText = IVA;
+		document.getElementById("lblTOTAL").innerText = Total;
+
 	}
 </script>
 </head>
@@ -141,7 +156,6 @@
 	<table>
 		<tr>
 			<td>Cod. Producto</td>
-
 			<td>Cantidad</td>
 			<td>Valor Total</td>
 
@@ -157,6 +171,21 @@
 				name="PurchasePrice"></td>
 			<td><label id="lblTotal"></label></td>
 
+		</tr>
+		<tr></tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td><label id="IVA"></label></td>
+			<td>
+				<button onclick="totales()" class="btnEffect1">Calcular
+					Total</button>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td><label id="lblTOTAL"></label></td>
+			<td>
 		</tr>
 
 	</table>

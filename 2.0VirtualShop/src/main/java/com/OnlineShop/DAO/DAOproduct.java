@@ -58,6 +58,31 @@ public class DAOproduct {
 		}
 	}
 
+	public ArrayList<String> listadoProductos() {
+		ArrayList<String> registros = new ArrayList<String>();
+		BDconection conex = new BDconection();
+
+		String sql = "";
+		sql = "SELECT idProduct, name, salePrice FROM products;";
+
+		try {
+			Statement consulta = conex.getBDconection().createStatement();
+			ResultSet res = consulta.executeQuery(sql);
+
+			while (res.next()) {
+				registros.add(
+						res.getString("idProduct") + ";" + res.getString("name") + ";" + res.getDouble("salePrice"));
+
+			}
+			res.close();
+			consulta.close();
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "No hay productos por consultar\n" + e);
+		}
+		return registros;
+	}
+
 	public ArrayList<Product> searchProducts(String sProduct) {
 		ArrayList<Product> products = new ArrayList<Product>();
 		BDconection conex = new BDconection();
@@ -98,8 +123,8 @@ public class DAOproduct {
 				String modificar = "nitSupplier='" + upProduct.getNitSupplier() + "',purchasePrice='"
 						+ upProduct.getPurchasePrice() + "',IVA='" + upProduct.getIVA() + "',salePrice='"
 						+ upProduct.getSalePrice() + "'";
-				stmt.executeUpdate(
-						"UPDATE products" + " SET " + modificar + " WHERE idProduct='" + upProduct.getIdProduct() + "'");
+				stmt.executeUpdate("UPDATE products" + " SET " + modificar + " WHERE idProduct='"
+						+ upProduct.getIdProduct() + "'");
 				response = "Se modifico al producto " + upProduct.getIdProduct() + " el nombre (" + upProduct.getName()
 						+ "), el NIT del proveedor (" + upProduct.getNitSupplier() + "), el precio de compra ("
 						+ upProduct.getPurchasePrice() + ") y el precio de venta (" + upProduct.getSalePrice() + ").";

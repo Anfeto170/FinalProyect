@@ -7,13 +7,13 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import com.OnlineShop.DTO.Ventas;
+import com.OnlineShop.DTO.*;
 
 public class VentasDAO {
 
-	public boolean insertVentas(Ventas ven) {
+	public String insertVentas(Ventas ven) {
 		BDconection conex = new BDconection();
-		boolean confirmation = false;
+		String confirmation = "No se pudo generar la factura";
 		try {
 			Statement estatuto = conex.getBDconection().createStatement();
 			estatuto.executeUpdate(
@@ -21,10 +21,21 @@ public class VentasDAO {
 							+ ven.getNIT_cliente() + "', '" + ven.getCodigo_producto() + "', " + ven.getCantidad()
 							+ ", " + ven.getTotal() + ", '" + ven.getFecha() + "')");
 			estatuto.close();
-			confirmation = true;
+			confirmation = "Factura creada con éxito";
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+		return confirmation;
+	}
+
+	public boolean confirmationData(Ventas ventaT) {
+		boolean confirmation = false;
+		DAOproduct DAOp = new DAOproduct();
+		DAOcostumer DAOc = new DAOcostumer();
+
+		DAOp.searchProducts(ventaT.getCodigo_producto());
+		DAOc.searchCostumers(ventaT.getNIT_cliente());
+
 		return confirmation;
 	}
 
@@ -65,7 +76,7 @@ public class VentasDAO {
 					+ "GROUP BY codigo_producto\r\n" + "ORDER BY codigo_producto;";
 
 		} else if (tipo.trim().equals("cliente")) {
-			sql = "SELECT NIT_cliente AS Item, SUM(cantidad) AS Unidades\r\n" + "FROM ventas\r\n"
+			sql = "SELECT NIT_cliente AS Item, SUM(cantidad) AS Unidades\r\n" + "FROM ventas_tbl\r\n"
 					+ "GROUP BY NIT_cliente\r\n" + "ORDER BY NIT_cliente;";
 		}
 

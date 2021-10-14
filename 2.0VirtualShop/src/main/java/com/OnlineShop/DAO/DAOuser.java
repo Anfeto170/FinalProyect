@@ -44,7 +44,7 @@ public class DAOuser {
 
 			while (res.next()) {
 				User usr = new User(res.getString("idCard"), res.getString("name"), res.getString("email"),
-						res.getString("user"), res.getString("password"));
+						res.getString("user"));
 				users.add(usr);
 			}
 			res.close();
@@ -183,7 +183,7 @@ public class DAOuser {
 			Statement stmt = Conect.getBDconection().createStatement();
 			String modificar = "email='" + modUser.getEmail() + "',password=MD5('" + modUser.getPassword() + "')";
 			stmt.executeUpdate("UPDATE users" + " SET " + modificar + " WHERE idCard='" + modUser.getIDcard() + "'");
-			String response = "Se modifico al usuario " + modUser.getUser() + " la contraseña (" + modUser.getPassword()
+			String response = "Se modifico al usuario " + modUser.getUser() + " la contraseï¿½a (" + modUser.getPassword()
 					+ ") y el E-mail (" + modUser.getEmail() + ").";
 			return response;
 		} catch (SQLException e) {

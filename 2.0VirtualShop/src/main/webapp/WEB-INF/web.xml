@@ -10,13 +10,15 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
-		<url-pattern>Menu.html</url-pattern>
+		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
-		<url-pattern>/Menu.html</url-pattern>
+		<url-pattern>/index.html</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
-		<welcome-file>Menu.html</welcome-file>
+		<welcome-file>index.html
+		</welcome-file>
 	</welcome-file-list>
+
 </web-app>

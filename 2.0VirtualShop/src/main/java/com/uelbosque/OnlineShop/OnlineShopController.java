@@ -22,29 +22,28 @@ public class OnlineShopController {
 	/***************
 	 * User
 	 ***************/
-	
-	@RequestMapping("/") 
-	public String home(){
-	    return " 22"; 
-	} 
-	
-	
+	/*
+	@RequestMapping("/")
+	public String home() {
+		return " 22";
+	}*/
+
 	@RequestMapping("/logInUser")
 	public String logInUsers(String sUser, String pUser) {
 		DAOuser DAO = new DAOuser();
-		
+
 		String confirmation = "";
 		if (DAO.validateUser(sUser) == true) {
 			if (DAO.validatePassword(sUser, pUser) == true) {
 				confirmation = "Ingreso Exitoso";
 			} else {
-				confirmation = "Contraseña incorrecta";
+				confirmation = "Contraseï¿½a incorrecta";
 			}
 		} else {
 			confirmation = "El usuario ingresado no existe";
 		}
 		return confirmation;
-		//return DAO.logIn(sUser, pUser);
+		// return DAO.logIn(sUser, pUser);
 	}
 
 	@RequestMapping("/CreateUser")
@@ -89,13 +88,13 @@ public class OnlineShopController {
 		DAOcostumer DAO = new DAOcostumer();
 		return DAO.searchCostumers(sCostumer);
 	}
-	
+
 	@RequestMapping("/ModifyCostumer")
 	public String ModifyCostumer(Costumer modCost) {
 		DAOcostumer DAO = new DAOcostumer();
 		return DAO.modifyCostumer(modCost);
 	}
-	
+
 	@RequestMapping("/DeleteCostumer")
 	public String DeleteCostumer(Costumer dCostumer) {
 		DAOcostumer DAO = new DAOcostumer();
@@ -112,13 +111,13 @@ public class OnlineShopController {
 		dao.createSupplier(p);
 		return "Proveedor Registrado";
 	}
-	
+
 	@RequestMapping("/ModifySupplier")
 	public String ModifySupplier(Supplier modSupp) {
 		DAOsupplier DAO = new DAOsupplier();
 		return DAO.modifySupplier(modSupp);
 	}
-	
+
 	@RequestMapping("/SearchSupplier")
 	public ArrayList<Supplier> consultarProveedores(String nit) {
 		DAOsupplier dao = new DAOsupplier();
@@ -134,53 +133,87 @@ public class OnlineShopController {
 		dao.createProduct(p);
 		return "Producto Registrado";
 	}
-	
+
 	@PostMapping("/cargarArchivo")
-    public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file) {
-        String fileName = file.getOriginalFilename();
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm");  
-        LocalDateTime now = LocalDateTime.now();  
-        try {
-        	String name = "C:\\ArchivosRecibidos\\" + dtf.format(now) + fileName;
-        	System.out.println(name);
-            File fl = new File(name);
-            file.transferTo(fl);
-            DAOproduct dao = new DAOproduct();
-            dao.FileUpload(fl);
-        } catch (Exception e) {
-        	e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-        return ResponseEntity.ok("Archivo cargado con exito.");
-    }
+	public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file) {
+		String fileName = file.getOriginalFilename();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm");
+		LocalDateTime now = LocalDateTime.now();
+		try {
+			String name = "C:\\ArchivosRecibidos\\" + dtf.format(now) + fileName;
+			System.out.println(name);
+			File fl = new File(name);
+			file.transferTo(fl);
+			DAOproduct dao = new DAOproduct();
+			dao.FileUpload(fl);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+		return ResponseEntity.ok("Archivo cargado con exito.");
+	}
 
 	@RequestMapping("/SearchProduct")
 	public ArrayList<Product> searchProducts(String sProduct) {
 		DAOproduct DAO = new DAOproduct();
 		return DAO.searchProducts(sProduct);
 	}
-	
+
 	@RequestMapping("/ModifyProduct")
 	public String modifyProduct(Product modProd) {
 		DAOproduct DAO = new DAOproduct();
 		return DAO.modifyProduct(modProd);
 	}
-	
+
 	@RequestMapping("/DeleteProduct")
 	public String DeleteProduct(Product dProduct) {
 		DAOproduct DAO = new DAOproduct();
 		DAO.deleteProduct(dProduct);
 		return "Producto  Eliminado";
 	}
-	
+
 	/***************
 	 * Sales
 	 ***************/
-	
-	@RequestMapping("/consultarVentas")
-	public ArrayList<String> consultarVentas(String tipo) {		
-		VentasDAO dao = new VentasDAO();
-		return dao.consultarConsolidado(tipo);		
+	@RequestMapping("/CreateSale")
+	public String insertVentas(Ventas ven) {
+		VentasDAO DAO = new VentasDAO();
+		String response = null;
+		ArrayList<Object> Verificator = DAO.verifyClientAndProduct(Integer.parseInt(ven.getCodigo_producto()),ven.getNIT_cliente());
+		if (Verificator.size() != 0) {
+			boolean confir = DAO.insertVentas(ven);
+			if (confir == true) {
+				response = "Venta registrada";
+			}
+			
+		}
+		else {
+			response = "No existe el cliente y/o el producto";
+		}
+		return response; 
 	}
-	
+	@RequestMapping("/consultarVentas")
+	public ArrayList<String> consultarVentas(String tipo) {
+		VentasDAO dao = new VentasDAO();
+		return dao.consultarConsolidado(tipo);
+	}
+
+	@RequestMapping("/CreateSale")
+	public String CreateSale(Ventas factura) {
+		VentasDAO dao = new VentasDAO();
+		return dao.insertVentas(factura);
+	}
+
+	@RequestMapping("/SearchSale")
+	public ArrayList<Ventas> SearchSale(String date) {
+		VentasDAO dao = new VentasDAO();
+		return dao.searchSales(date);
+	}
+
+	@RequestMapping("/ListSales")
+	public ArrayList<String> ListSales() {
+		DAOproduct dao = new DAOproduct();
+		return dao.listadoProductos();
+	}
+
 }

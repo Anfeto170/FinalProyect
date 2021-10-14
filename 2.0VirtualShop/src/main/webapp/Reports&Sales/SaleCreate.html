@@ -32,8 +32,6 @@
 
 				// alert(http.responseText);
 				var select = document.getElementById("sltProducts");
-				var select1 = document.getElementById("sltProducts1");
-				var select2 = document.getElementById("sltProducts2");
 
 				//CreateTableFromJSON(http.responseText);
 
@@ -62,8 +60,7 @@
 		if (document.getElementById("txtIDcard").value.trim().length == 0
 				| document.getElementById("start").value.trim().length == 0
 				| document.getElementById("sltProducts").value.trim().length == 0
-				| document.getElementById("txtCantidad").value.trim().length == 0
-				| document.getElementById("lblTotal").value.trim().length == 0) {
+				| document.getElementById("txtCantidad").value.trim().length == 0) {
 			alert("Los datos de cliente, fecha y una compra deben ser requeridos.");
 			return false;
 		} else {
@@ -80,15 +77,15 @@
 			var Date = document.getElementById("start").value.trim();
 			var IdProduct = document.getElementById("sltProducts").value.trim();
 			var Amount = document.getElementById("txtCantidad").value.trim();
-			var Tprice = document.getElementById("lblTotal").value.trim();
+			var Tprice = parseFloat(document.getElementById("lblTotal").innerHTML);
 
-			alert(IdCostumer, Date, IdProduct, Amount, Tprice)
+			alert(IdCostumer + Date + IdProduct + Amount + Tprice)
 
 			var http = new XMLHttpRequest();
 			var url = '/TiendaVirtualNewYork/CreateSale';
-			var params = "NIT_cliente=" + IdProduct + "&" + "Codigo_producto="
-					+ Name + "&" + "cantidad=" + NIT + "&" + "Total=" + PPrice
-					+ "&" + "Fecha=" + Fecha;
+			var params = "NIT_cliente=" + IdCostumer + "&" + "Codigo_producto="
+					+ IdProduct + "&" + "cantidad=" + Amount + "&" + "Total="
+					+ Tprice + "&" + "Fecha=" + Date;
 			http.open('POST', url, true);
 
 			//Send the proper header information along with the request
@@ -111,7 +108,7 @@
 		// alert(select.options[select.selectedIndex].text);
 		alert(price);
 		alert(unidades.value);
-		var Total = parseFloat(price) * parseFloat(unidades.value);
+		var Total = parseFloat(price, 2) * parseFloat(unidades.value, 2);
 		document.getElementById("lblTotal").innerText = Total;
 	}
 </script>
@@ -144,8 +141,7 @@
 	<table>
 		<tr>
 			<td>Cod. Producto</td>
-			<td></td>
-			<td>Nombre Producto</td>
+
 			<td>Cantidad</td>
 			<td>Valor Total</td>
 
@@ -154,10 +150,9 @@
 		<tr>
 
 			<td><select id="sltProducts" onchange="updatePrice()"></select>
-			<td>
+				<!-- <td>
 				<button onclick="consultarProducto()" class="btnEffect1">Consultar</button>
-			</td>
-			<td><label id="NombreProducto"></label></td>
+			</td> -->
 			<td><input type="number" class="fondo3" id="txtCantidad"
 				name="PurchasePrice"></td>
 			<td><label id="lblTotal"></label></td>

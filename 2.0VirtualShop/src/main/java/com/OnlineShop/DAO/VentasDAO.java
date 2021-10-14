@@ -54,7 +54,7 @@ public class VentasDAO {
 
 			while (res.next()) {
 				Ventas sale = new Ventas(res.getString("NIT_cliente"), res.getString("codigo_producto"),
-						res.getInt("cantidad"), res.getFloat("valor_total"), res.getString("fecha"));
+						res.getInt("cantidad"), res.getString("valor_total"), res.getString("fecha"));
 				sales.add(sale);
 			}
 			res.close();

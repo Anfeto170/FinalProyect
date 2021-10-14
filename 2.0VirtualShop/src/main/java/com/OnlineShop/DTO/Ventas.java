@@ -4,10 +4,10 @@ public class Ventas {
 
 	private String Codigo_producto;
 	private int cantidad;
-	private float Total;
+	private String Total;
 	private String NIT_cliente, Fecha;
 
-	public Ventas(String nIT_cliente, String codigo_producto, int cantidad, float total, String fecha) {
+	public Ventas(String nIT_cliente, String codigo_producto, int cantidad, String total, String fecha) {
 		super();
 		this.Codigo_producto = codigo_producto;
 		this.cantidad = cantidad;
@@ -40,11 +40,11 @@ public class Ventas {
 		this.cantidad = cantidad;
 	}
 
-	public float getTotal() {
+	public String getTotal() {
 		return Total;
 	}
 
-	public void setTotal(float total) {
+	public void setTotal(String total) {
 		Total = total;
 	}
 

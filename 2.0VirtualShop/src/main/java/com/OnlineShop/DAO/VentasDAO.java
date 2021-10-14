@@ -9,40 +9,32 @@ import javax.swing.JOptionPane;
 
 import com.OnlineShop.DTO.Ventas;
 
-
 public class VentasDAO {
-	
-	
-	public void insertVentas(Ventas ven) {
+
+	public boolean insertVentas(Ventas ven) {
 		BDconection conex = new BDconection();
+		boolean confirmation = false;
 		try {
 			Statement estatuto = conex.getBDconection().createStatement();
-			estatuto.executeUpdate("INSERT INTO ventas_tbl(codigo_producto, cantidad, NIT_cliente) VALUES ('" + ven.getCodigo_producto() + "', " + ven.getCantidad()
-					+ ", '" + ven.getNIT_cliente() +"')");
+			estatuto.executeUpdate(
+					"INSERT INTO ventas_tbl(NIT_cliente, codigo_producto, cantidad, valor_total, fecha) VALUES ('"
+							+ ven.getNIT_cliente() + "', '" + ven.getCodigo_producto() + "', " + ven.getCantidad()
+							+ ", " + ven.getTotal() + ", '" + ven.getFecha() + "')");
 			estatuto.close();
-			
-
+			confirmation = true;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+		return confirmation;
 	}
 
-	public ArrayList <String> consultarConsolidado(String tipo) {
-		ArrayList<String> registros = new ArrayList<String>();
+	public ArrayList<Ventas> searchSales(String fecha) {
+		ArrayList<Ventas> sales = new ArrayList<Ventas>();
 		BDconection conex = new BDconection();
 
-		String sql = "";
-		if (tipo.trim().equals("producto")) {
-			sql = "SELECT codigo_producto AS Item, SUM(cantidad) AS Unidades\r\n"
-					+ "FROM ventas_tbl\r\n"
-					+ "GROUP BY codigo_producto\r\n"
-					+ "ORDER BY codigo_producto;";
-			
-		} else if (tipo.trim().equals("cliente")){
-			sql = "SELECT NIT_cliente AS Item, SUM(cantidad) AS Unidades\r\n"
-					+ "FROM ventas\r\n"
-					+ "GROUP BY NIT_cliente\r\n"
-					+ "ORDER BY NIT_cliente;";
+		String sql = "SELECT * FROM ventas_tbl";
+		if (!fecha.trim().equals("null")) {
+			sql = sql + "WHERE fecha = '" + fecha + "'";
 		}
 
 		try {
@@ -50,12 +42,43 @@ public class VentasDAO {
 			ResultSet res = consulta.executeQuery(sql);
 
 			while (res.next()) {
-				registros.add(res.getString("Item")+";"+res.getInt("unidades"));
+				Ventas sale = new Ventas(res.getString("NIT_cliente"), res.getString("codigo_producto"),
+						res.getInt("cantidad"), res.getFloat("valor_total"), res.getString("fecha"));
+				sales.add(sale);
+			}
+			res.close();
+			consulta.close();
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "No hay facturas por consultar\n" + e);
+		}
+		return sales;
+	}
+
+	public ArrayList<String> consultarConsolidado(String tipo) {
+		ArrayList<String> registros = new ArrayList<String>();
+		BDconection conex = new BDconection();
+
+		String sql = "";
+		if (tipo.trim().equals("producto")) {
+			sql = "SELECT codigo_producto AS Item, SUM(cantidad) AS Unidades\r\n" + "FROM ventas_tbl\r\n"
+					+ "GROUP BY codigo_producto\r\n" + "ORDER BY codigo_producto;";
+
+		} else if (tipo.trim().equals("cliente")) {
+			sql = "SELECT NIT_cliente AS Item, SUM(cantidad) AS Unidades\r\n" + "FROM ventas\r\n"
+					+ "GROUP BY NIT_cliente\r\n" + "ORDER BY NIT_cliente;";
+		}
+
+		try {
+			Statement consulta = conex.getBDconection().createStatement();
+			ResultSet res = consulta.executeQuery(sql);
+
+			while (res.next()) {
+				registros.add(res.getString("Item") + ";" + res.getInt("unidades"));
 
 			}
 			res.close();
 			consulta.close();
-			
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "no se pudo consultar el Proveedor\n" + e);

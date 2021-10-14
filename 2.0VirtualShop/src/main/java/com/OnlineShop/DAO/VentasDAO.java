@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import com.OnlineShop.DTO.Ventas;
+import com.OnlineShop.DTO.*;
 
 public class VentasDAO {
 
@@ -54,7 +54,56 @@ public class VentasDAO {
 		}
 		return sales;
 	}
+	
+	public ArrayList<Object> verifyClientAndProduct(int CodProduct, String CosName) {
+		ArrayList<Object> clientes = new ArrayList<Object>();
+		BDconection conex = new BDconection();
 
+		String sqlp = "SELECT * FROM products";
+		if (!CosName.trim().equals("null")) {
+			sqlp = sqlp + "WHERE name = '" + CosName + "'";
+		}
+
+		try {
+			Statement consulta = conex.getBDconection().createStatement();
+			ResultSet res = consulta.executeQuery(sqlp);
+
+			while (res.next()) {
+				Costumer sale = new Costumer(res.getString("idcard"),res.getString("name"), res.getString("address"),
+						res.getString("phone"), res.getString("email"));
+				clientes.add(sale);
+			}
+			res.close();
+			consulta.close();
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "No hay facturas por consultar\n" + e);
+		}
+		
+		String sqlc = "SELECT * FROM costumers";
+		if (CodProduct != 0) {
+			sqlc = sqlc + "WHERE idProduct = '" + CodProduct + "'";
+		}
+
+		try {
+			Statement consulta = conex.getBDconection().createStatement();
+			ResultSet res = consulta.executeQuery(sqlc);
+
+			while (res.next()) {
+				Product sale = new Product(res.getInt("idProduct"),res.getString("name"), res.getInt("nitSupplier"),
+						res.getDouble("purchasePrice"));
+				clientes.add(sale);
+			}
+			res.close();
+			consulta.close();
+			
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "No hay facturas por consultar\n" + e);
+		}
+		return clientes;
+	}
+	
 	public ArrayList<String> consultarConsolidado(String tipo) {
 		ArrayList<String> registros = new ArrayList<String>();
 		BDconection conex = new BDconection();

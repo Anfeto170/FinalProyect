@@ -38,7 +38,7 @@ public class OnlineShopController {
 			if (DAO.validatePassword(sUser, pUser) == true) {
 				confirmation = "Ingreso Exitoso";
 			} else {
-				confirmation = "Contraseña incorrecta";
+				confirmation = "Contraseï¿½a incorrecta";
 			}
 		} else {
 			confirmation = "El usuario ingresado no existe";
@@ -176,7 +176,23 @@ public class OnlineShopController {
 	/***************
 	 * Sales
 	 ***************/
-	
+	@RequestMapping("/CreateSale")
+	public String insertVentas(Ventas ven) {
+		VentasDAO DAO = new VentasDAO();
+		String response = null;
+		ArrayList<Object> Verificator = DAO.verifyClientAndProduct(Integer.parseInt(ven.getCodigo_producto()),ven.getNIT_cliente());
+		if (Verificator.size() != 0) {
+			boolean confir = DAO.insertVentas(ven);
+			if (confir == true) {
+				response = "Venta registrada";
+			}
+			
+		}
+		else {
+			response = "No existe el cliente y/o el producto";
+		}
+		return response; 
+	}
 	@RequestMapping("/consultarVentas")
 	public ArrayList<String> consultarVentas(String tipo) {		
 		VentasDAO dao = new VentasDAO();

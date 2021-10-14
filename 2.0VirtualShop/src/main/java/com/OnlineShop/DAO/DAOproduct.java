@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
 import javax.swing.JOptionPane;
 
 import com.OnlineShop.DTO.Product;
@@ -85,6 +84,7 @@ public class DAOproduct {
 		}
 		return products;
 	}
+
 	public String modifyProduct(Product upProduct) {
 		String response = null;
 		Conect = new BDconection();
@@ -94,13 +94,16 @@ public class DAOproduct {
 			ArrayList<Supplier> Results = Searcher.searchSupplier(ProductNit);
 			if (Results.size() != 0) {
 				Statement stmt = Conect.getBDconection().createStatement();
-				String modificar = "name='" + upProduct.getName() + "',nitSupplier='"+ upProduct.getNitSupplier()+"',purchasePrice='"+ upProduct.getPurchasePrice()+"',IVA='"+ upProduct.getIVA()+"',salePrice='" + upProduct.getSalePrice()+ "'";
-				stmt.executeUpdate("UPDATE costumers" + " SET " + modificar + " WHERE idCard='" + upProduct.getIdProduct() + "'");
+				String modificar = "nitSupplier='" + upProduct.getNitSupplier() + "',purchasePrice='"
+						+ upProduct.getPurchasePrice() + "',IVA='" + upProduct.getIVA() + "',salePrice='"
+						+ upProduct.getSalePrice() + "'";
+				stmt.executeUpdate(
+						"UPDATE costumers" + " SET " + modificar + " WHERE idCard='" + upProduct.getIdProduct() + "'");
 				response = "Se modifico al producto " + upProduct.getIdProduct() + " el nombre (" + upProduct.getName()
-						+ "), el NIT del proveedor ("+upProduct.getNitSupplier()+"), el precio de compra ("+upProduct.getPurchasePrice()+") y el precio de venta (" + upProduct.getSalePrice() + ").";
-			}
-			else {
-				response ="No existe un proveedor para ese producto";
+						+ "), el NIT del proveedor (" + upProduct.getNitSupplier() + "), el precio de compra ("
+						+ upProduct.getPurchasePrice() + ") y el precio de venta (" + upProduct.getSalePrice() + ").";
+			} else {
+				response = "No existe un proveedor para ese producto";
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -108,10 +111,10 @@ public class DAOproduct {
 		}
 		return response;
 	}
-	
+
 	public void deleteProduct(Product pro) {
 		String bd = "Grupo02NewYork.products";
-		String condicion = "idProduct='" + pro.getIdProduct()+ "'";
+		String condicion = "idProduct='" + pro.getIdProduct() + "'";
 		Conect = new BDconection();
 
 		try {
@@ -125,8 +128,4 @@ public class DAOproduct {
 
 	}
 
-	
-
-	}
-
-
+}

@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Modificacion de productos</title>
+<title>Modificacion de Productos</title>
 <link rel="stylesheet" href="/TiendaVirtualNewYork/Letra4.css"
 	media="all" />
 <link rel="stylesheet" href="/TiendaVirtualNewYork/EstiloTabla.css"
@@ -16,6 +15,15 @@
 <link rel="stylesheet" href="/TiendaVirtualNewYork/Titulo2.css"
 	media="all" />
 <script>
+	function validarEmail(valor) {
+		if (/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
+				.test(valor)) {
+			return true;
+		} else {
+			alert("El email no es válido");
+			return false;
+		}
+	}
 	function sendData() {
 		var email = validarEmail(document.getElementById("txtEmail").value
 				.trim());
@@ -23,16 +31,19 @@
 		if (valido) {
 			alert("Los datos son válidos")
 
-			var IDproduct = document.getElementById("txtIDproduct").value.trim();
+			var IDproduct = document.getElementById("txtIDproduct").value
+					.trim();
 			var Name = null;
 			var Price = document.getElementById("txtPrice").value.trim();
-			var NitSupplier = document.getElementById("txtNitSupplier").value.trim();
+			var NitSupplier = document.getElementById("txtNitSupplier").value
+					.trim();
 
 			var Delivery = new XMLHttpRequest();
 
 			var url = '/TiendaVirtualNewYork/ModifyUser';
-			var Parameters = "idProduct=" + IDproduct + "&" + "Name=" + Name + "&"
-					+ "nitSupplier=" + NitSupplier + "&" + "purchasePrice=" + Price;
+			var Parameters = "idProduct=" + IDproduct + "&" + "Name=" + Name
+					+ "&" + "nitSupplier=" + NitSupplier + "&"
+					+ "purchasePrice=" + Price;
 			alert("Se enviaron los datos")
 
 			Delivery.open('POST', url, true);
@@ -77,20 +88,16 @@
 <body>
 	<div align="center">
 		<br></br>
-		<h1>Sección modificar productos</h1>
+		<h1>Sección Modificar Productos</h1>
+		<br></br> <br></br> <label for="txtIDproduct">ID del producto:
+		</label> <input type="number" class="fondo" id="txtIDproduct" name="IDproduct">
+		<br> <br> <label for="txtPrice">Precio de compra: </label> <input
+			type="text" class="fondo2" id="txtPrice" name="Price"> <br>
+		<br> <label for="txtNitSupplier">Nit del proveedor: </label> <input
+			type="number" class="fondo4" id="txtNitSupplier" name="NitSupplier">
 		<br></br> <br></br>
-
-		<!--  El método post, hace que se ejectu get pero no muestra nada en URL -->
-		<label for="txtIDproduct">ID del producto: </label> <input type="number"
-			class="fondo" id="txtIDproduct" name="IDproduct"> <br> <br>
-
-		<label for="txtPrice">Precio de compra: </label> <input type="text"
-			class="fondo2" id="txtPrice" name="Price"> <br> <br>
-
-		<label for="txtNitSupplier">Nit del proveedor: </label> <input type="number"
-			class="fondo4" id="txtNitSupplier" name="NitSupplier"> <br></br> <br></br>
-		<button onclick="sendData()" class="btnEffect1">Validar para
-			guardar</button>
+		<button onclick="sendData()" class="btnEffect1">Enviar
+			Modificación</button>
 		<br></br>
 		<button onclick="location.href='/TiendaVirtualNewYork/User/Menu.html'"
 			class="btnEffect2">Menú Usuario</button>

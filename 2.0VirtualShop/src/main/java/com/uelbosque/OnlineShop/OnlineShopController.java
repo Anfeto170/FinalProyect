@@ -199,7 +199,7 @@ public class OnlineShopController {
 	}
 
 	@RequestMapping("/CreateSale")
-	public String CreateSale(Ventas factura) {
+	public boolean CreateSale(Ventas factura) {
 		VentasDAO dao = new VentasDAO();
 		return dao.insertVentas(factura);
 	}

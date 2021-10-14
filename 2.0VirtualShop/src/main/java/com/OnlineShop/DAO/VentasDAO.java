@@ -11,7 +11,7 @@ import com.OnlineShop.DTO.*;
 
 public class VentasDAO {
 
-	public String insertVentas(Ventas ven) {
+	public boolean insertVentas(Ventas ven) {
 		BDconection conex = new BDconection();
 		String confirmation = "No se pudo generar la factura";
 		try {
@@ -25,7 +25,7 @@ public class VentasDAO {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		return confirmation;
+		return false;
 	}
 
 	public boolean confirmationData(Ventas ventaT) {

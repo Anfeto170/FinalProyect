@@ -28,10 +28,12 @@ public class OnlineShopController {
 	/***************
 	 * User
 	 ***************/
+	
 	@RequestMapping("/") 
 	public String home(){
-	    return "Menuprimario 22"; 
+	    return " 22"; 
 	} 
+	
 	
 	@RequestMapping("/logInUser")
 	public String logInUsers(String sUser, String pUser) {
@@ -42,7 +44,7 @@ public class OnlineShopController {
 			if (DAO.validatePassword(sUser, pUser) == true) {
 				confirmation = "Ingreso Exitoso";
 			} else {
-				confirmation = "Contraseï¿½a incorrecta";
+				confirmation = "Contraseña incorrecta";
 			}
 		} else {
 			confirmation = "El usuario ingresado no existe";

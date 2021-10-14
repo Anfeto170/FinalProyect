@@ -13,14 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.OnlineShop.DAO.DAOcostumer;
-import com.OnlineShop.DAO.DAOproduct;
-import com.OnlineShop.DAO.DAOuser;
-import com.OnlineShop.DAO.DAOsupplier;
-import com.OnlineShop.DTO.Costumer;
-import com.OnlineShop.DTO.Product;
-import com.OnlineShop.DTO.Supplier;
-import com.OnlineShop.DTO.User;
+import com.OnlineShop.DTO.*;
+import com.OnlineShop.DAO.*;
 
 @RestController
 public class OnlineShopController {
@@ -178,4 +172,15 @@ public class OnlineShopController {
 		DAO.deleteProduct(dProduct);
 		return "Producto  Eliminado";
 	}
+	
+	/***************
+	 * Sales
+	 ***************/
+	
+	@RequestMapping("/consultarVentas")
+	public ArrayList<String> consultarVentas(String tipo) {		
+		VentasDAO dao = new VentasDAO();
+		return dao.consultarConsolidado(tipo);		
+	}
+	
 }

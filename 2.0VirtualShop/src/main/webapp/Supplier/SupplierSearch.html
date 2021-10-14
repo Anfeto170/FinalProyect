@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" href="/TiendaVirtualNewYork/Letra4.css"
+<!--  <link rel="stylesheet" href="/TiendaVirtualNewYork/Letra4.css"
 	media="all" />
 <link rel="stylesheet" href="/TiendaVirtualNewYork/EstiloTabla.css"
 	media="all" />
@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/TiendaVirtualNewYork/Letra8.css"
 	media="all" />
 <link rel="stylesheet" href="/TiendaVirtualNewYork/Titulo2.css"
-	media="all" />
+	media="all" />-->
 <title>Consulta de Proveedores</title>
 <script>
 	function sendData() {
@@ -39,10 +39,10 @@
 		http.send(params);
 	}
 
-	function CreateTableFromJSON(json_result) {
-
+function CreateTableFromJSON(json_result) {
+		
 		const json_arr = JSON.parse(json_result);
-
+		
 		// EXTRACT VALUE FOR HTML HEADER. 	
 		var col = [];
 		for (var i = 0; i < json_arr.length; i++) {
@@ -60,6 +60,7 @@
 		// CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
 
 		var tr = table.insertRow(-1); // TABLE ROW.
+		
 
 		for (var i = 0; i < col.length; i++) {
 			var th = document.createElement("th"); // TABLE HEADER.
@@ -106,8 +107,6 @@
 <link rel="stylesheet" href="/TiendaVirtualNewYork/Designxd.css" media="all" />
 		<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	</head>
-</body>
 	<div class="sidebar">
 		<div class="logo_content">
 			<div class="logo">
@@ -209,9 +208,9 @@
 	searchBtn.onclick = function() {
 		sidebar.classList.toggle("active");
 	}
-		</script>			
-	</body>		
-	</html>
+		</script>
+		<div id="dvResult"></div>
+						
 <!--  
 	<center>
 		<br></br> <br></br> <br></br>
@@ -233,7 +232,7 @@
 			onclick="location.href='http://localhost:8080/TiendaVirtualApp/Supplier/Menu.jsp'"
 			value='Menú Proveedor'
 			style='width: 250px; height: 50px; background-color: #FF5555; border: none; color: white; padding: 16px 32px; text-decoration: none; margin: 4px 2px; cursor: pointer'>
-
+-->
 		<div id="dvResult"></div>
-</body>-->
+</body>
 </html>

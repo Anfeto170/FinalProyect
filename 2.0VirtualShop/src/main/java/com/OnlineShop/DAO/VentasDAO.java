@@ -81,7 +81,7 @@ public class VentasDAO {
 			consulta.close();
 
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "no se pudo consultar el Proveedor\n" + e);
+			JOptionPane.showMessageDialog(null, "No se pudieron consultar las ventas\n" + e);
 		}
 		return registros;
 	}

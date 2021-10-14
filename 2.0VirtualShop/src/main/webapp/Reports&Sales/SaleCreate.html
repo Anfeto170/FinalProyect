@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="/TiendaVirtualNewYork/Letra4.css"
+	media="all" />
+<link rel="stylesheet" href="/TiendaVirtualNewYork/EstiloTabla.css"
+	media="all" />
+<link rel="stylesheet" href="/TiendaVirtualNewYork/Letra5.css"
+	media="all" />
+<link rel="stylesheet" href="/TiendaVirtualNewYork/Letra8.css"
+	media="all" />
+<link rel="stylesheet" href="/TiendaVirtualNewYork/Titulo2.css"
+	media="all" />
+<title>Registro de Ventas</title>
+<script>
+	function validateFields() {
+		if (document.getElementById("txtIdProduct").value.trim().length == 0) {
+			alert("El código del producto no puede ser vacio.");
+			return false;
+		} else if (document.getElementById("txtName").value.trim().length == 0) {
+			alert("El nombre no puede ser vacio.");
+			return false;
+		} else if (document.getElementById("txtNIT").value.trim().length == 0) {
+			alert("El NIT del proveedor no puede ser vacio.");
+			return false;
+		} else if (document.getElementById("txtPurchasePrice").value.trim().length == 0) {
+			alert("El precio de compra no puede ser vacio.");
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	function sendData() {
+		if (!validateFields()) {
+			return;
+		} else {
+			var IdProduct = document.getElementById("txtIdProduct").value
+					.trim();
+			var Name = document.getElementById("txtName").value.trim();
+			var NIT = document.getElementById("txtNIT").value.trim();
+			var PPrice = document.getElementById("txtPurchasePrice").value
+					.trim();
+
+			var http = new XMLHttpRequest();
+			var url = '/TiendaVirtualNewYork/CreateProduct';
+			var params = "idProduct=" + IdProduct + "&" + "Name=" + Name + "&"
+					+ "nitSupplier=" + NIT + "&" + "purchasePrice=" + PPrice;
+			http.open('POST', url, true);
+
+			//Send the proper header information along with the request
+			http.setRequestHeader('Content-type',
+					'application/x-www-form-urlencoded');
+
+			http.onreadystatechange = function() {//Call a function when the state changes.
+				if (http.readyState == 4 && http.status == 200) {
+					alert(http.responseText);
+				}
+			}
+			http.send(params);
+		}
+	}
+</script>
+</head>
+<body>
+	<br></br>
+	<br></br>
+	<h1>Registrar Factura</h1>
+	<br></br>
+	<br></br>
+
+	<table>
+		<tr>
+			<td>Cédula</td>
+			<td><input type="number" class="fondo3" id="txtIDcard"
+				name="PurchasePrice"></td>
+			<td>
+				<button onclick="consultarCliente()" class="btnEffect1">Consultar</button>
+			</td>
+			<td>Cliente</td>
+			<td><label for="lbCliente"></label></td>
+			<td><label for="start">Fecha:</label></td>
+			<td><input type="date" id="start" name="trip-start"
+				value="2018-07-22" min="2021-01-01" max="2118-12-31"></td>
+			<td><label for="lbFecha"></label></td>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<table>
+		<tr>
+			<td>Cod. Producto</td>
+			<td></td>
+			<td>Nombre Producto</td>
+			<td>Cantidad</td>
+			<td>Valor Total</td>
+
+		</tr>
+
+		<tr>
+			<td><input type="number" class="fondo3" id="txtCodProducto"
+				name="PurchasePrice"></td>
+			<td>
+				<button onclick="consultarProducto()" class="btnEffect1">Consultar</button>
+			</td>
+			<td><label id="NombreProducto"></label></td>
+			<td><input type="number" class="fondo3" id="txtCantidad"
+				name="PurchasePrice"></td>
+			<td><label id="Total"></label></td>
+
+		</tr>
+		<tr>
+			<td><input type="number" class="fondo3" id="txtCodProducto"
+				name="PurchasePrice"></td>
+			<td>
+				<button onclick="consultarProducto()" class="btnEffect1">Consultar</button>
+			</td>
+			<td><label id="NombreProducto"></label></td>
+			<td><input type="number" class="fondo3" id="txtCantidad"
+				name="PurchasePrice"></td>
+			<td><label id="Total"></label></td>
+
+		</tr>
+		<tr>
+			<td><input type="number" class="fondo3" id="txtCodProducto"
+				name="PurchasePrice"></td>
+			<td>
+				<button onclick="consultarProducto()" class="btnEffect1">Consultar</button>
+			</td>
+			<td><label id="NombreProducto"></label></td>
+			<td><input type="number" class="fondo3" id="txtCantidad"
+				name="PurchasePrice"></td>
+			<td><label id="Total"></label></td>
+
+		</tr>
+	</table>
+	<br></br>
+	<button onclick="sendData()" class="btnEffect1">Enviar Datos</button>
+	<br></br>
+	<button
+		onclick="location.href='/TiendaVirtualNewYork/Product/Menu.html'"
+		class="btnEffect2">Menú Producto</button>
+
+</body>
+</html>

@@ -1,15 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Eliminar Usuario</title>
-<link rel="stylesheet" href="/TiendaVirtualNewYork/Letra4.css" media="all" />
-<link rel="stylesheet" href="/TiendaVirtualNewYork/EstiloTabla.css" media="all" />
-<link rel="stylesheet" href="/TiendaVirtualNewYork/Letra5.css" media="all" />
-<link rel="stylesheet" href="/TiendaVirtualNewYork/Letra8.css" media="all" />
-<link rel="stylesheet" href="/TiendaVirtualNewYork/Titulo2.css" media="all" />
+<link rel="stylesheet" href="/TiendaVirtualNewYork/F5.css" media="all" />
+<link rel="stylesheet" href="/TiendaVirtualNewYork/EstiloTabla3.css" media="all" />
+<link rel="stylesheet" href="/TiendaVirtualNewYork/Titulo3.css" media="all" />
+<link rel="stylesheet" href="/TiendaVirtualNewYork/TituloHumo5.css" media="all" />
+<link rel="stylesheet" href="/TiendaVirtualNewYork/TituloBlanco.css" media="all" />
 <script>
 
 	function sendData() {
@@ -61,13 +60,18 @@
 </script>
 </head>
 <body>
-<center>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
     <center>
     <h1>Sección de eliminar usuarios</h1>
+    </center>
     <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		<center>
 		 <!--  El método post, hace que se ejectu get pero no muestra nada en URL -->
 		<td><label for="txtIDcard">Cédula del usuario que se va a eliminar:</label></td>
 			<td><input type="number" class="fondo1" id="txtIDcard" name="idCard"></td>
@@ -75,12 +79,21 @@
 	<br></br>
     <br></br>
     <br></br>
-			<button onclick="sendData()" class="btnEffect1">Eliminar Usuario</button>
+	<center>
+<a href="#" class="button" onclick="sendData()">Eliminar Usuario</a>
+</center>
+<br></br>
+<br></br>
+<center>
+<a href="#" class="button2" onclick="location.href='/TiendaVirtualNewYork/User/Menu.html'">Menú Usuario</a>
+</center>
+	
+<!--  <button class="button" onclick="sendData()">Eliminar Usuario</button>
 		<br></br>
-	    <br></br>
+<br></br>
 	    <center>
-		<button onclick="location.href='/TiendaVirtualNewYork/User/Menu.html'" class="btnEffect2">Menú Usuario</button>
-		</center>
+		<button class="button" onclick="location.href='/TiendaVirtualNewYork/User/Menu.html'">Menú Usuario</button>
+		</center>-->
  <link rel="stylesheet" href="/TiendaVirtualNewYork/Designxd.css" media="all" />
 		<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -95,40 +108,28 @@
 			<i class='bx bx-menu' id="btn" ></i>
 		</div>	
 		<ul class="nav_list">
-			<li>
-				<a href="#">
-					<i class='bx bx-food-menu'></i>
-					<span class="links_name">Opciones Para:</span>
-				</a>
-				<!-- <span class="tooltip">Mis Archivos</span>   -->
-			</li>
-			<li>
-				<a href="#">
-					<i class='bx bx-user'></i>
-					<span onclick="location.href='http://localhost:8080/TiendaVirtualNewYork/User/Menu.html'" class="links_name">Usuarios</span>
-				</a>
-				 <span class="tooltip">Usuarios</span>  
-			</li>
-			<li>
-				<a hreh="#">
-					<i class='bx bx-group'></i>
-					<span onclick="location.href='http://localhost:8080/TiendaVirtualNewYork/Costumer/Menu.html'" class="links_name">Clientes</span>
-				</a>
-				 <span class="tooltip">Clientes</span>  
-			</li>
-			<li>
-				<a hreh="#">
-					<i class='bx bx-briefcase' ></i>					
-					<span onclick="location.href='http://localhost:8080/TiendaVirtualNewYork/Supplier/Menu.html'" class="links_name">Proveedores</span>
-				</a>
-				 <span class="tooltip">Proveedores</span>  
-			</li>
-			<li>
-				<a hreh="#">
-					<i class='bx bx-gift' ></i>
-					<span onclick="location.href='http://localhost:8080/TiendaVirtualNewYork/Product/Menu.html'" class="links_name">Productos</span>
-				</a>
-				 <span class="tooltip">Productos</span>  
+			<li><a href="#"> <i class='bx bx-food-menu'></i> <span
+				class="links_name">Opciones Para:</span>
+		</a> <!-- <span class="tooltip">Mis Archivos</span>   --></li>
+		<li><a href="#"> <i onclick="location.href='http://localhost:8080/TiendaVirtualNewYork/User/Menu.html'" class='bx bx-user'></i> <span
+				onclick="location.href='http://localhost:8080/TiendaVirtualNewYork/User/Menu.html'"
+				class="links_name">Usuarios</span>
+		</a> <span class="tooltip">Usuarios</span></li>
+		<li><a hreh="#"> <i onclick="location.href='http://localhost:8080/TiendaVirtualNewYork/Costumer/Menu.html'" class='bx bx-group'></i> <span
+				onclick="location.href='http://localhost:8080/TiendaVirtualNewYork/Costumer/Menu.html'"
+				class="links_name">Clientes</span>
+		</a> <span class="tooltip">Clientes</span></li>
+		<li><a hreh="#"> <i onclick="location.href='http://localhost:8080/TiendaVirtualNewYork/Supplier/Menu.html'" class='bx bx-briefcase'></i> <span
+				onclick="location.href='http://localhost:8080/TiendaVirtualNewYork/Supplier/Menu.html'"
+				class="links_name">Proveedores</span>
+		</a> <span class="tooltip">Proveedores</span></li>
+		<li><a hreh="#"> <i onclick="location.href='http://localhost:8080/TiendaVirtualNewYork/Product/Menu.html'" class='bx bx-gift'></i> <span
+				onclick="location.href='http://localhost:8080/TiendaVirtualNewYork/Product/Menu.html'"
+				class="links_name">Productos</span>
+		</a> <span class="tooltip">Productos</span></li>
+		<li><a hreh="#"> <i onclick="location.href='http://localhost:8080/TiendaVirtualNewYork/Reports&Sales/Menu.html'" class='bx bx-bar-chart-alt-2'></i> <span
+				onclick="location.href='http://localhost:8080/TiendaVirtualNewYork/Reports&Sales/Menu.html'" class="links_name">Reportes & Ventas</span>
+		</a> <span class="tooltip">Estadisticas</span></li>
 			</li>
 			  <!--  <li>
 				<a hreh="#">

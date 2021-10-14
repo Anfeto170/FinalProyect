@@ -175,6 +175,7 @@ public class OnlineShopController {
 	/***************
 	 * Sales
 	 ***************/
+	/*
 	@RequestMapping("/CreateSale")
 	public String insertVentas(Ventas ven) {
 		VentasDAO DAO = new VentasDAO();
@@ -191,7 +192,8 @@ public class OnlineShopController {
 			response = "No existe el cliente y/o el producto";
 		}
 		return response; 
-	}
+	}*/
+	
 	@RequestMapping("/consultarVentas")
 	public ArrayList<String> consultarVentas(String tipo) {
 		VentasDAO dao = new VentasDAO();

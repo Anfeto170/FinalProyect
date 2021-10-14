@@ -93,12 +93,13 @@ public class DAOproduct {
 			DAOsupplier Searcher = new DAOsupplier();
 			ArrayList<Supplier> Results = Searcher.searchSupplier(ProductNit);
 			if (Results.size() != 0) {
+				System.out.println("Aquí se llegó");
 				Statement stmt = Conect.getBDconection().createStatement();
 				String modificar = "nitSupplier='" + upProduct.getNitSupplier() + "',purchasePrice='"
 						+ upProduct.getPurchasePrice() + "',IVA='" + upProduct.getIVA() + "',salePrice='"
 						+ upProduct.getSalePrice() + "'";
 				stmt.executeUpdate(
-						"UPDATE costumers" + " SET " + modificar + " WHERE idCard='" + upProduct.getIdProduct() + "'");
+						"UPDATE products" + " SET " + modificar + " WHERE idProduct='" + upProduct.getIdProduct() + "'");
 				response = "Se modifico al producto " + upProduct.getIdProduct() + " el nombre (" + upProduct.getName()
 						+ "), el NIT del proveedor (" + upProduct.getNitSupplier() + "), el precio de compra ("
 						+ upProduct.getPurchasePrice() + ") y el precio de venta (" + upProduct.getSalePrice() + ").";

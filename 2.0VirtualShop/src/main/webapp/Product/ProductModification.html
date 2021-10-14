@@ -15,18 +15,24 @@
 <link rel="stylesheet" href="/TiendaVirtualNewYork/Titulo2.css"
 	media="all" />
 <script>
-	function validarEmail(valor) {
-		if (/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
-				.test(valor)) {
-			return true;
-		} else {
-			alert("El email no es válido");
+	function validate() {
+		var txtPrice = document.getElementById("txtPrice");
+		var txtIDproduct = document.getElementById("txtIDproduct");
+		var txtNIT = document.getElementById("txtNitSupplier");
+
+		if (txtPrice.value.length == 0 | txtIDproduct.value.length == 0
+				| txtNIT.value.lenght == 0) {
+			alert("Todos los campos deben ser requeridos")
 			return false;
 		}
+
+		else {
+			return true;
+		}
 	}
+
 	function sendData() {
-		var email = validarEmail(document.getElementById("txtEmail").value
-				.trim());
+
 		var valido = validate();
 		if (valido) {
 			alert("Los datos son válidos")
@@ -40,7 +46,7 @@
 
 			var Delivery = new XMLHttpRequest();
 
-			var url = '/TiendaVirtualNewYork/ModifyUser';
+			var url = '/TiendaVirtualNewYork/ModifyProduct';
 			var Parameters = "idProduct=" + IDproduct + "&" + "Name=" + Name
 					+ "&" + "nitSupplier=" + NitSupplier + "&"
 					+ "purchasePrice=" + Price;
@@ -68,20 +74,6 @@
 		}
 		return;
 	}
-
-	function validate() {
-		var txtPrice = document.getElementById("txtPrice");
-		var txtIDproduct = document.getElementById("txtIDproduct");
-
-		if (txtPrice.value.length == 0 | txtIDproduct.value.length == 0) {
-			alert("La cédula & contraseña deben ser cambios a cambiar")
-			return false;
-		}
-
-		else {
-			return true;
-		}
-	}
 </script>
 <font face="Comic Sans MS,arial">
 </head>
@@ -99,8 +91,9 @@
 		<button onclick="sendData()" class="btnEffect1">Enviar
 			Modificación</button>
 		<br></br>
-		<button onclick="location.href='/TiendaVirtualNewYork/User/Menu.html'"
-			class="btnEffect2">Menú Usuario</button>
+		<button
+			onclick="location.href='/TiendaVirtualNewYork/Product/Menu.html'"
+			class="btnEffect2">Menú Producto</button>
 	</div>
 	<link rel="stylesheet" href="/TiendaVirtualNewYork/Designxd.css"
 		media="all" />

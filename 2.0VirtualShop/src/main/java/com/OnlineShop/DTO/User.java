@@ -12,12 +12,14 @@ public class User {
 		User = user;
 		Password = password;
 	}
-	public  User(String iDcard, String name, String email, String user) {
-		
+
+	public User(String iDcard, String name, String email, String user) {
+
 		IDcard = iDcard;
 		Name = name;
 		Email = email;
 		User = user;
+		Password = "****";
 	}
 
 	@Override

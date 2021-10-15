@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import com.OnlineShop.DTO.Costumer;
-	
+
 public class DAOcostumer {
 
 	BDconection Conect;
@@ -27,6 +27,32 @@ public class DAOcostumer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public ArrayList<String> costumersList(String card) {
+		ArrayList<String> registros = new ArrayList<String>();
+
+		BDconection conex = new BDconection();
+
+		String sql = "";
+		sql = "select name from costumers where idcard= " + card + ";";
+
+		try {
+			Statement consulta = conex.getBDconection().createStatement();
+			ResultSet res = consulta.executeQuery(sql);
+
+			while (res.next()) {
+				registros.add(res.getString("name"));
+
+			}
+
+			res.close();
+			consulta.close();
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "No existe un usuario con esta cédula\n" + e);
+		}
+		return registros;
 	}
 
 	public ArrayList<Costumer> searchCostumers(String sCostumer) {
@@ -60,10 +86,13 @@ public class DAOcostumer {
 		Conect = new BDconection();
 		try {
 			Statement stmt = Conect.getBDconection().createStatement();
-			String modificar = "name='" + upCostumer.getName() + "',address='"+ upCostumer.getAddress()+"',phone='"+ upCostumer.getPhone()+"',email='" + upCostumer.getEmail() + "'";
-			stmt.executeUpdate("UPDATE costumers" + " SET " + modificar + " WHERE idCard='" + upCostumer.getIDcard() + "'");
+			String modificar = "name='" + upCostumer.getName() + "',address='" + upCostumer.getAddress() + "',phone='"
+					+ upCostumer.getPhone() + "',email='" + upCostumer.getEmail() + "'";
+			stmt.executeUpdate(
+					"UPDATE costumers" + " SET " + modificar + " WHERE idCard='" + upCostumer.getIDcard() + "'");
 			String response = "Se modifico al cliente " + upCostumer.getIDcard() + " el nombre (" + upCostumer.getName()
-					+ "), la direccion("+upCostumer.getAddress()+"), el telefono ("+upCostumer.getPhone()+") y el E-mail (" + upCostumer.getEmail() + ").";
+					+ "), la direccion(" + upCostumer.getAddress() + "), el telefono (" + upCostumer.getPhone()
+					+ ") y el E-mail (" + upCostumer.getEmail() + ").";
 			return response;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -71,11 +100,10 @@ public class DAOcostumer {
 		}
 		return null;
 	}
-	
 
 	public void deleteCostumer(Costumer co) {
 		String bd = "Grupo02NewYork.costumers";
-		String condicion = "idcard='" + co.getIDcard()+ "'";
+		String condicion = "idcard='" + co.getIDcard() + "'";
 		Conect = new BDconection();
 
 		try {

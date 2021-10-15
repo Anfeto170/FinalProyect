@@ -13,10 +13,9 @@
 
 	function validarEmail(valor) {
 		if (/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(valor)) {
-			alert("La dirección de email " + valor + " es correcta.");
 			return true;
 		} else {
-			alert("La dirección de email es incorrecta.");
+			document.getElementById("confirmation").innerText = "No se han llenado todos los campos";
 			return false;
 		}
 	}
@@ -25,7 +24,7 @@
 		var email = validarEmail(document.getElementById("txtEmail").value.trim());
 		var valido = validate();
 		if (valido &&= email) {
-			alert("Los datos son válidos")
+			document.getElementById("confirmation").innerText = "Los datos son validos";
 
 			var IDcard = document.getElementById("txtIDcard").value.trim();
 			var Name = document.getElementById("txtName").value.trim();
@@ -56,7 +55,7 @@
 			Delivery.send(Parameters);
 
 		} else {
-			alert("Los datos no son válidos")
+			document.getElementById("confirmation").innerText = "Los datos no son validos";
 		}
 		return;
 	}
@@ -68,7 +67,7 @@
 
 		if (txtUser.value.length == 0 | txtPassword.value.length == 0
 				| txtIDcard.value.length == 0) {
-			alert("La cédula, usuario y contraseña deben ser cambios requeridos")
+			document.getElementById("confirmation").innerText = "No se han llenado todos los campos";
 			return false;
 		}
 
@@ -105,6 +104,7 @@
 <a href="#" class="button" onclick="sendData()">Validar para guardar</a>
 </center>
 <br></br>
+<label id="confirmation"></label>
 <br></br>
 <center>
 <a href="#" class="button2" onclick="location.href='/TiendaVirtualNewYork/User/Menu.html'">Menú Usuario</a>

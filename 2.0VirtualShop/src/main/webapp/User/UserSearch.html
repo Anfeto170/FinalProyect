@@ -27,11 +27,12 @@
 
 		http.onreadystatechange = function() {//Call a function when the state changes.
 			if (http.readyState == 4 && http.status == 200) {
-				// alert(http.responseText);
+				document.getElementById("confirmation").innerText = "Consulta exitosa";
 				CreateTableFromJSON(http.responseText);
 
 			}
 		}
+		
 		http.send(params);
 	}
 
@@ -102,7 +103,9 @@
     <br></br>
     <br></br>
 <center>
-<a href="#" class="button"  onclick="search()">Consultar</a>
+<button onclick="search()" class="btnEffect1">Consultar</button>
+<br></br>
+<label id="confirmation"></label>
 </center>
 <br></br>
 <br></br>

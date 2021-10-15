@@ -26,7 +26,7 @@ function sendData() {
 	var email = validarEmail(document.getElementById("txtEmail").value.trim());
 	var valido = validate();
 	if (valido &&= email) {
-			alert("Los datos son válidos")
+			document.getElementById("confirmation").innerText = "Los datos son válidos";
 
 			var IDcard = document.getElementById("txtIDcard").value.trim();
 			var Name = document.getElementById("txtName").value.trim();
@@ -57,7 +57,8 @@ function sendData() {
 			Delivery.send(Parameters);
 
 		} else {
-			alert("Los NO datos son válidos")
+			document.getElementById("confirmation").innerText = "Los datos no son válidos";
+
 		}
 		return;
 	}
@@ -69,7 +70,7 @@ function sendData() {
 
 		if (txtIDcard.value.length == 0 | txtName.value.length == 0
 				| txtPhone.value.length == 0) {
-			alert("El IDcard, nombre y teléfono deben ser campos requeridos")
+			document.getElementById("confirmation").innerText = "El IDcard, nombre y teléfono deben ser campos requeridos";
 			return false;
 		}
 
@@ -111,6 +112,7 @@ function sendData() {
 <a href="#" class="button" onclick="sendData()">Validar para guardar</a>
 </center>
 <br></br>
+<label id="confirmation"></label>
 <br></br>
 <center>
 <a href="#" class="button2" onclick="location.href='/TiendaVirtualNewYork/Costumer/Menu.html'">Menú Cliente</a>

@@ -13,14 +13,6 @@ public class User {
 		Password = password;
 	}
 
-	public User(String iDcard, String name, String email, String user) {
-
-		IDcard = iDcard;
-		Name = name;
-		Email = email;
-		User = user;
-		Password = "****";
-	}
 
 	@Override
 	public String toString() {

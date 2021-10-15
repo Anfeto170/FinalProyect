@@ -44,7 +44,7 @@ public class DAOuser {
 
 			while (res.next()) {
 				User usr = new User(res.getString("idCard"), res.getString("name"), res.getString("email"),
-						res.getString("user"));
+						res.getString("user"), res.getString("password"));
 				users.add(usr);
 			}
 			res.close();

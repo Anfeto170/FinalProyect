@@ -16,8 +16,36 @@
 <title>Registro de Ventas</title>
 
 <script>
-	function consultarProducto() {
+	function consultarCliente() {
+		var card = document.getElementById("txtIDcard").value.trim();
+		if (card.trim() == "") {
+			card = "null";
+		}
+		var http = new XMLHttpRequest();
+		var url = '/TiendaVirtualNewYork/ListCostumer';
+		var params = "card=" + card;
+		http.open('POST', url, true);
 
+		//Send the proper header information along with the request
+		http.setRequestHeader('Content-type',
+				'application/x-www-form-urlencoded');
+
+		http.onreadystatechange = function() {//Call a function when the state changes.
+			if (http.readyState == 4 && http.status == 200) {
+
+				var datos = http.responseText;
+				datos = datos.replace('[', '').replace(']', '');
+				datos = datos.replace('"', '').replace('"', '');
+
+				alert(datos);
+
+				document.getElementById("lbCliente").innerText = datos;
+			}
+		}
+		http.send(params);
+	}
+
+	function consultarProducto() {
 		var http = new XMLHttpRequest();
 		var url = '/TiendaVirtualNewYork/ListSales';
 		var params = "";
@@ -50,7 +78,6 @@
 
 					select.add(el);
 				}
-
 			}
 		}
 		http.send(params);
@@ -143,8 +170,9 @@
 			<td>
 				<button onclick="consultarCliente()" class="btnEffect1">Consultar</button>
 			</td>
-			<td>Cliente</td>
-			<td><label for="lbCliente"></label></td>
+			<td>Nombre:</td>
+			<td><label id="lbCliente"></label></td>
+			<td><div>&nbsp;&nbsp; | &nbsp;&nbsp;</div></td>
 			<td><label for="start">Fecha:</label></td>
 			<td><input type="date" id="start" name="trip-start"
 				value="2018-07-22" min="2021-01-01" max="2118-12-31"></td>
@@ -164,9 +192,6 @@
 		<tr>
 
 			<td><select id="sltProducts" onchange="updatePrice()"></select>
-				<!-- <td>
-				<button onclick="consultarProducto()" class="btnEffect1">Consultar</button>
-			</td> -->
 			<td><input type="number" class="fondo3" id="txtCantidad"
 				name="PurchasePrice"></td>
 			<td><label id="lblTotal"></label></td>

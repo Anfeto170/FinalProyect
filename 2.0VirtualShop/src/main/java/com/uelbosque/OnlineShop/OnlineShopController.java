@@ -23,10 +23,8 @@ public class OnlineShopController {
 	 * User
 	 ***************/
 	/*
-	@RequestMapping("/")
-	public String home() {
-		return " 22";
-	}*/
+	 * @RequestMapping("/") public String home() { return " 22"; }
+	 */
 
 	@RequestMapping("/logInUser")
 	public String logInUsers(String sUser, String pUser) {
@@ -102,6 +100,12 @@ public class OnlineShopController {
 		return "Cliente Eliminado";
 	}
 
+	@RequestMapping("/ListCostumer")
+	public ArrayList<String> ListCostumer(String card) {
+		DAOcostumer dao = new DAOcostumer();
+		return dao.costumersList(card);
+	}
+
 	/***************
 	 * Supplier
 	 ***************/
@@ -175,25 +179,7 @@ public class OnlineShopController {
 	/***************
 	 * Sales
 	 ***************/
-	/*
-	@RequestMapping("/CreateSale")
-	public String insertVentas(Ventas ven) {
-		VentasDAO DAO = new VentasDAO();
-		String response = null;
-		ArrayList<Object> Verificator = DAO.verifyClientAndProduct(Integer.parseInt(ven.getCodigo_producto()),ven.getNIT_cliente());
-		if (Verificator.size() != 0) {
-			boolean confir = DAO.insertVentas(ven);
-			if (confir == true) {
-				response = "Venta registrada";
-			}
-			
-		}
-		else {
-			response = "No existe el cliente y/o el producto";
-		}
-		return response; 
-	}*/
-	
+
 	@RequestMapping("/consultarVentas")
 	public ArrayList<String> consultarVentas(String tipo) {
 		VentasDAO dao = new VentasDAO();

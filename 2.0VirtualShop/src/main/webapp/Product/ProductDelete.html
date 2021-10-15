@@ -14,7 +14,7 @@
 	function sendData() {
 		var valido = validate();
 		if (valido) {
-			alert("Los datos son vï¿½lidos")
+			document.getElementById("confirmation").innerText = "Los datos son validos";
 
 			var IdProduct = document.getElementById("txtIdProduct").value.trim();
 
@@ -39,7 +39,7 @@
 			Delivery.send(Parameters);
 
 		} else {
-			alert("Los datos son inválidos")
+			document.getElementById("confirmation").innerText = "Los datos no son validos";
 		}
 		return;
 	}
@@ -49,7 +49,7 @@
 		var IdProduct = document.getElementById("txtIdProduct");
 
 		if (txtIdProduct.value.length == 0) {
-			alert("Diite el codigo que quiere eliminar")
+			document.getElementById("confirmation").innerText = "Los datos no son validos";
 			return false;
 		}
 
@@ -81,6 +81,8 @@
 	<br></br>
 <center>
 <a href="#" class="button" onclick="sendData()">Eliminar Producto</a>
+<br>
+<label id="confirmation"></label>
 </center>
 <br></br>
 <br></br>

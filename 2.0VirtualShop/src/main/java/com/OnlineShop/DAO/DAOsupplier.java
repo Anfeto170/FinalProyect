@@ -63,5 +63,20 @@ public class DAOsupplier {
 		}
 		return null;
 	}
+	public void deleteSupplier(Supplier dsup) {
+		String bd = "Grupo02NewYork.supplier";
+		String condicion = "NIT='" + dsup.getNIT() + "'";
+		BDconection Conect = new BDconection();
+
+		try {
+			Statement stmt = Conect.getBDconection().createStatement();
+			stmt.executeUpdate("DELETE FROM " + bd + " WHERE " + condicion + ";");
+			System.out.println("El Proveedor fue eliminado ");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 
 }

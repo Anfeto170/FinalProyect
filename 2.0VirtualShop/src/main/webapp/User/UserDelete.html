@@ -14,7 +14,7 @@
 	function sendData() {
 		var valido = validate();
 		if (valido) {
-			alert("Los datos son válidos")
+			document.getElementById("confirmation").innerText = "Los datos  son validos";
 
 			var IDcard = document.getElementById("txtIDcard").value.trim();
 
@@ -34,12 +34,13 @@
 					// alert(Delivery.responseText);
 					var myDiv = document.getElementById("dvTabla");
 					myDiv.innerHTML = "<b>" + Delivery.responseText + "</b>";
+				
 				}
 			}
 			Delivery.send(Parameters);
 
 		} else {
-			alert("Los datos son inválidos")
+			document.getElementById("confirmation").innerText = "Los datos no son validos";
 		}
 		return;
 	}
@@ -49,7 +50,7 @@
 		var txtIDcard = document.getElementById("txtIDcard");
 
 		if (txtIDcard.value.length == 0) {
-			alert("La cédula, usuario y contraseña deben ser cambios requeridos")
+			document.getElementById("confirmation").innerText = "Los datos no son validos";
 			return false;
 		}
 
@@ -81,6 +82,8 @@
     <br></br>
 <center>
 <a href="#" class="button" onclick="sendData()">Eliminar Usuario</a>
+<br>
+<label id="confirmation"></label>
 </center>
 <br></br>
 <br></br>

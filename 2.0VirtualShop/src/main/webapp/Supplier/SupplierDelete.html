@@ -16,12 +16,12 @@
 		if (valido) {
 			document.getElementById("confirmation").innerText = "Los datos son validos";
 
-			var IDcard = document.getElementById("txtIDcard").value.trim();
+			var NIT = document.getElementById("txtNIT").value.trim();
 
 			var Delivery = new XMLHttpRequest();
 
-			var url = '/TiendaVirtualNewYork/DeleteCostumer';
-			var Parameters = "IDcard=" + IDcard;
+			var url = '/TiendaVirtualNewYork/DeleteSupplier';
+			var Parameters = "NIT=" + NIT;
 			Delivery.open('POST', url, true);
 
 			//Send the proper header information along with the request
@@ -46,9 +46,9 @@
 
 	function validate() {
 
-		var txtIDcard = document.getElementById("txtIDcard");
+		var txtNIT = document.getElementById("txtNIT");
 
-		if (txtIDcard.value.length == 0) {
+		if (txtNIT.value.length == 0) {
 			document.getElementById("confirmation").innerText = "Los datos no son validos";
 			return false;
 		}
@@ -65,7 +65,7 @@
 	<br></br>
 	<br></br>
     <center>
-    <h1>Sección de eliminar clientes</h1>
+    <h1>Sección de eliminar proveedores</h1>
     </center>
     <br></br>
 	<br></br>
@@ -73,8 +73,8 @@
 	<br></br>
 	<center>
 		 <!--  El mï¿½todo post, hace que se ejectu get pero no muestra nada en URL -->
-		<td><label for="txtIDcard">Cédula del Cliente que se va a eliminar:</label></td>
-			<td><input type="number" class="fondo1" id="txtIDcard" name="IDcard"></td>
+		<td><label for="txtNIT">NIT del proveedor que se va a eliminar:</label></td>
+			<td><input type="number" class="fondo1" id="txtNIT" name="NIT"></td>
 	</center>	
 	<br></br>
     <br></br>
@@ -87,7 +87,7 @@
 <br></br>
 <br></br>
 <center>
-<a href="#" class="button2" onclick="location.href='/TiendaVirtualNewYork/Costumer/Menu.html'">Menú Cliente</a>
+<a href="#" class="button2" onclick="location.href='/TiendaVirtualNewYork/Supplier/Menu.html'">Menú Proveedor</a>
 </center>	    
     <!--  
 			<button onclick="sendData()" class="btnEffect1">Eliminar Usuario</button>

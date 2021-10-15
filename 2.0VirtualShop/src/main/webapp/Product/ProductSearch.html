@@ -28,7 +28,7 @@
 
 		http.onreadystatechange = function() {//Call a function when the state changes.
 			if (http.readyState == 4 && http.status == 200) {
-				alert(http.responseText);
+				document.getElementById("confirmation").innerText = "Consulta exitosa";
 				CreateTableFromJSON(http.responseText);
 
 			}
@@ -105,9 +105,10 @@
     	<br></br>
     	<br></br>
 <center>
-<a href="#" class="button"  onclick="search()">Consultar</a>
-</center>
+<button onclick="search()" class="btnEffect1">Consultar</button>
 <br></br>
+<label id="confirmation"></label>
+</center>
 <br></br>
 <center>
 <a href="#" class="button2" onclick="location.href='/TiendaVirtualNewYork/Product/Menu.html'">Menú Producto</a>
@@ -131,7 +132,7 @@
 			rel='stylesheet'>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		</head>
-</body>
+		
 <div class="sidebar">
 	<div class="logo_content">
 		<div class="logo">
@@ -217,8 +218,6 @@
 		sidebar.classList.toggle("active");
 	}
 </script>
-</body>
-</html>
 
 <!--  <br></br>
 	<br></br>

@@ -58,7 +58,7 @@ input[type="password"]{
 }
 
 .button:hover{
-	background: cadetblue;	
+	background: #7AA1A9;	
 }
 
 p{
@@ -72,7 +72,7 @@ p{
 }
 
 .link:hover{
-	color: cadetblue;
+	color: #7AA1A9;
 }
 
 @media(min-width:768px)

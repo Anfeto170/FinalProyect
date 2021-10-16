@@ -15,7 +15,7 @@
 	function sendData() {
 		var valido = validate();
 		if (valido) {
-			alert("Los datos son v�lidos")
+			document.getElementById("confirmation").innerText = "Los datos son validos";
 
 			var IDcard = document.getElementById("txtIDcard").value.trim();
 
@@ -40,7 +40,7 @@
 			Delivery.send(Parameters);
 
 		} else {
-			alert("Los datos son inv�lidos")
+			document.getElementById("confirmation").innerText = "Los datos no son validos";
 		}
 		return;
 	}
@@ -50,7 +50,7 @@
 		var txtIDcard = document.getElementById("txtIDcard");
 
 		if (txtIDcard.value.length == 0) {
-			alert("La c�dula, usuario y contrase�a deben ser cambios requeridos")
+			document.getElementById("confirmation").innerText = "Los datos no son validos";
 			return false;
 		}
 
@@ -82,6 +82,8 @@
     <br></br>
 <center>
 <a href="#" class="button" onclick="sendData()">Eliminar Cliente</a>
+<br></br>
+<label id="confirmation"></label>
 </center>
 <br></br>
 <br></br>

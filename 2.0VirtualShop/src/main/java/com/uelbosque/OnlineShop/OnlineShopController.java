@@ -56,7 +56,12 @@ public class OnlineShopController {
 		DAOuser DAO = new DAOuser();
 		return DAO.searchUsers(sUser);
 	}
-
+	
+	@RequestMapping("/ConsultaGUser")
+	public ArrayList<User> ConsultaGUser(String sUser) {
+		DAOuser DAO = new DAOuser();
+		return DAO.searchUsers(sUser);
+	}
 	@RequestMapping("/ModifyUser")
 	public String ModifyUser(User modUser) {
 		DAOuser DAO = new DAOuser();
@@ -83,6 +88,12 @@ public class OnlineShopController {
 
 	@RequestMapping("/SearchCostumer")
 	public ArrayList<Costumer> searchCostumers(String sCostumer) {
+		DAOcostumer DAO = new DAOcostumer();
+		return DAO.searchCostumers(sCostumer);
+	}
+	
+	@RequestMapping("/ConsultaGCostumer")
+	public ArrayList<Costumer> ConsultaCostumers(String sCostumer) {
 		DAOcostumer DAO = new DAOcostumer();
 		return DAO.searchCostumers(sCostumer);
 	}
@@ -127,6 +138,13 @@ public class OnlineShopController {
 		DAOsupplier dao = new DAOsupplier();
 		return dao.searchSupplier(nit);
 	}
+	@RequestMapping("/DeleteSupplier")
+	public String DeleteSupplier(Supplier dsup) {
+		DAOsupplier DAO = new DAOsupplier();
+		DAO.deleteSupplier(dsup);
+		return "Proveedor Eliminado";
+	}
+
 
 	/***************
 	 * Product

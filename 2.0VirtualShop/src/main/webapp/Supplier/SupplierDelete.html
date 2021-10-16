@@ -3,26 +3,25 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Eliminar Usuario</title>
+<title>Eliminar Cliente</title>
 <link rel="stylesheet" href="/TiendaVirtualNewYork/F5.css" media="all" />
 <link rel="stylesheet" href="/TiendaVirtualNewYork/EstiloTabla3.css" media="all" />
 <link rel="stylesheet" href="/TiendaVirtualNewYork/Titulo3.css" media="all" />
 <link rel="stylesheet" href="/TiendaVirtualNewYork/TituloHumo5.css" media="all" />
 <link rel="stylesheet" href="/TiendaVirtualNewYork/TituloBlanco.css" media="all" />
-<link rel="shortcut icon" href="pp2.jpg">	
 <script>
 
 	function sendData() {
 		var valido = validate();
 		if (valido) {
-			document.getElementById("confirmation").innerText = "Los datos  son validos";
+			document.getElementById("confirmation").innerText = "Los datos son validos";
 
-			var IDcard = document.getElementById("txtIDcard").value.trim();
+			var NIT = document.getElementById("txtNIT").value.trim();
 
 			var Delivery = new XMLHttpRequest();
 
-			var url = '/TiendaVirtualNewYork/DeleteUser';
-			var Parameters = "IDcard=" + IDcard;
+			var url = '/TiendaVirtualNewYork/DeleteSupplier';
+			var Parameters = "NIT=" + NIT;
 			Delivery.open('POST', url, true);
 
 			//Send the proper header information along with the request
@@ -35,7 +34,6 @@
 					// alert(Delivery.responseText);
 					var myDiv = document.getElementById("dvTabla");
 					myDiv.innerHTML = "<b>" + Delivery.responseText + "</b>";
-				
 				}
 			}
 			Delivery.send(Parameters);
@@ -48,9 +46,9 @@
 
 	function validate() {
 
-		var txtIDcard = document.getElementById("txtIDcard");
+		var txtNIT = document.getElementById("txtNIT");
 
-		if (txtIDcard.value.length == 0) {
+		if (txtNIT.value.length == 0) {
 			document.getElementById("confirmation").innerText = "Los datos no son validos";
 			return false;
 		}
@@ -67,38 +65,40 @@
 	<br></br>
 	<br></br>
     <center>
-    <h1>Sección de eliminar usuarios</h1>
+    <h1>Sección de eliminar proveedores</h1>
     </center>
     <br></br>
 	<br></br>
 	<br></br>
 	<br></br>
 	<center>
-		 <!--  El método post, hace que se ejectu get pero no muestra nada en URL -->
-		<td><label for="txtIDcard">Cédula del usuario que se va a eliminar:</label></td>
-			<td><input type="number" class="fondo1" id="txtIDcard" name="idCard"></td>
+		 <!--  El mï¿½todo post, hace que se ejectu get pero no muestra nada en URL -->
+		<td><label for="txtNIT">NIT del proveedor que se va a eliminar:</label></td>
+			<td><input type="number" class="fondo1" id="txtNIT" name="NIT"></td>
 	</center>	
 	<br></br>
     <br></br>
     <br></br>
 <center>
-<a href="#" class="button" onclick="sendData()">Eliminar Usuario</a>
-<br>
+<a href="#" class="button" onclick="sendData()">Eliminar Cliente</a>
+<br></br>
 <label id="confirmation"></label>
 </center>
 <br></br>
 <br></br>
 <center>
-<a href="#" class="button2" onclick="location.href='/TiendaVirtualNewYork/User/Menu.html'">Menú Usuario</a>
-</center>
-	
-<!--  <button class="button" onclick="sendData()">Eliminar Usuario</button>
+<a href="#" class="button2" onclick="location.href='/TiendaVirtualNewYork/Supplier/Menu.html'">Menú Proveedor</a>
+</center>	    
+    <!--  
+			<button onclick="sendData()" class="btnEffect1">Eliminar Usuario</button>
 		<br></br>
-<br></br>
+	    <br></br>
 	    <center>
-		<button class="button" onclick="location.href='/TiendaVirtualNewYork/User/Menu.html'">Menú Usuario</button>
+		<button onclick="location.href='/TiendaVirtualNewYork/Costumer/Menu.html'" class="btnEffect2">Menï¿½ Cliente</button>
 		</center>-->
- <link rel="stylesheet" href="/TiendaVirtualNewYork/Designxd.css" media="all" />
+
+
+<link rel="stylesheet" href="/TiendaVirtualNewYork/Designxd.css" media="all" />
 		<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
@@ -169,8 +169,8 @@
 				<div class="profile_details">
 					<div class="name_job">
 					<img src="pp.jpg" alt="">
-						<div class="name">Juan López</div>
-						<div class="job">Diseño Web</div>
+						<div class="name">Juan Lï¿½pez</div>
+						<div class="job">Diseï¿½o Web</div>
 					</div>
 				</div>
 				<i class='bx bx-log-out' id="log_out" ></i>
@@ -204,15 +204,15 @@
 <br></br>
 <br></br>
 <br></br>
-	<h1><FONT face="Comic Sans MS,arial" COLOR="black">Sección de eliminar usuarios</FONT></h1>
+	<h1><FONT face="Comic Sans MS,arial" COLOR="black">Secciï¿½n de eliminar clientes</FONT></h1>
 <br></br>
 <br></br>
 <br></br>
 </center>	
 <center>
-	<label for="txtIDcard">Cédula del usuario que se va a eliminar:
+	<label for="txtIDcard">Cï¿½dula del cliente que se va a eliminar:
 	</label>
-	<input type="number" id="txtIDcard" name="IDcard">
+	<input type="text" id="txtIDcard" name="IDcard">
 <br></br>	
 <br></br>
 	<button style= 'background-color: #AAAAAA;  border: none; color: white; padding: 10px 10px; text-decoration: none; margin: 4px 2px; cursor: pointer'' onclick="sendData()">Eliminar Usuario</button>
@@ -220,11 +220,10 @@
 	<br></br>
 	<br></br>
 	<br></br>
-<input type='button' onclick="location.href='http://localhost:8080/TiendaVirtualApp/User/Menu.jsp'" value='Menú Usuario' style='width:250px; height:50px; background-color: #FF5555; border: none; color: white; padding: 16px 32px; text-decoration: none; margin: 4px 2px; cursor: pointer'' >
+<input type='button' onclick="location.href='http://localhost:8080/TiendaVirtualApp/Costumer/Menu.jsp'" value='Menï¿½ Usuario' style='width:250px; height:50px; background-color: #FF5555; border: none; color: white; padding: 16px 32px; text-decoration: none; margin: 4px 2px; cursor: pointer'' >
 	<br>
 	<br>
 	<div id="dvTabla"></div>
 </center>
-
 </body>-->
 </html>

@@ -16,7 +16,7 @@ body{
 	background-color:white;
 	width : 200px; 
 	height : 30px;
-	border: none;
+	border: 10px;
 	align-items: center;
 }
 
@@ -55,6 +55,6 @@ body{
 
 label {
     font-size: 25px;
-    COLOR: #CD69FF;
+    COLOR: black;
     font-family: "Fredoka One";
 }

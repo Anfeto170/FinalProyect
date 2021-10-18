@@ -21,22 +21,11 @@ public class VentasDAO {
 							+ ven.getNIT_cliente() + "', '" + ven.getCodigo_producto() + "', " + ven.getCantidad()
 							+ ", " + ven.getTotal() + ", '" + ven.getFecha() + "')");
 			estatuto.close();
-			confirmation = "Factura creada con éxito";
+			confirmation = "Factura creada con ï¿½xito";
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		return false;
-	}
-
-	public boolean confirmationData(Ventas ventaT) {
-		boolean confirmation = false;
-		DAOproduct DAOp = new DAOproduct();
-		DAOcostumer DAOc = new DAOcostumer();
-
-		DAOp.searchProducts(ventaT.getCodigo_producto());
-		DAOc.searchCostumers(ventaT.getNIT_cliente());
-
-		return confirmation;
 	}
 
 	public ArrayList<Ventas> searchSales(String fecha) {
@@ -45,7 +34,7 @@ public class VentasDAO {
 
 		String sql = "SELECT * FROM ventas_tbl";
 		if (!fecha.trim().equals("null")) {
-			sql = sql + "WHERE fecha = '" + fecha + "'";
+			sql = sql + " WHERE fecha = '" + fecha + "'";
 		}
 
 		try {
@@ -59,13 +48,13 @@ public class VentasDAO {
 			}
 			res.close();
 			consulta.close();
-
+			System.out.println("Se entregÃ³ el resultado" + sales);
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "No hay facturas por consultar\n" + e);
 		}
 		return sales;
 	}
-	
+
 	public ArrayList<Object> verifyClientAndProduct(int CodProduct, String CosName) {
 		ArrayList<Object> clientes = new ArrayList<Object>();
 		BDconection conex = new BDconection();
@@ -80,7 +69,7 @@ public class VentasDAO {
 			ResultSet res = consulta.executeQuery(sqlp);
 
 			while (res.next()) {
-				Costumer sale = new Costumer(res.getString("idcard"),res.getString("name"), res.getString("address"),
+				Costumer sale = new Costumer(res.getString("idcard"), res.getString("name"), res.getString("address"),
 						res.getString("phone"), res.getString("email"));
 				clientes.add(sale);
 			}
@@ -90,7 +79,7 @@ public class VentasDAO {
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "No hay facturas por consultar\n" + e);
 		}
-		
+
 		String sqlc = "SELECT * FROM costumers";
 		if (CodProduct != 0) {
 			sqlc = sqlc + "WHERE idProduct = '" + CodProduct + "'";
@@ -101,20 +90,19 @@ public class VentasDAO {
 			ResultSet res = consulta.executeQuery(sqlc);
 
 			while (res.next()) {
-				Product sale = new Product(res.getInt("idProduct"),res.getString("name"), res.getInt("nitSupplier"),
+				Product sale = new Product(res.getInt("idProduct"), res.getString("name"), res.getInt("nitSupplier"),
 						res.getDouble("purchasePrice"));
 				clientes.add(sale);
 			}
 			res.close();
 			consulta.close();
-			
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "No hay facturas por consultar\n" + e);
 		}
 		return clientes;
 	}
-	
+
 	public ArrayList<String> consultarConsolidado(String tipo) {
 		ArrayList<String> registros = new ArrayList<String>();
 		BDconection conex = new BDconection();

@@ -21,7 +21,7 @@
 			var Delivery = new XMLHttpRequest();
 
 			var url = '/TiendaVirtualNewYork/DeleteProduct';
-			var Parameters = "idProduct=" + IdProduct;
+			var Parameters = "idProduct=" + IdProduct+ "&" + "name=placeholder&nitSupplier=1111&purchasePrice=11111";
 			Delivery.open('POST', url, true);
 
 			//Send the proper header information along with the request
@@ -62,23 +62,19 @@
 <body>
 	<br></br>
 	<br></br>
-	<br></br>
-	<br></br>
     <center>
     <h1>Sección de eliminar Productos</h1>
     </center>
 	<<br></br>
 	<br></br>
-	<br></br>
-	<br></br>	
+
 	<center>
 	<label for="txtIdProduct">Codigo del producto que se va a eliminar:
 	</label>
 	<input type="number" id="txtIdProduct" name="IdProduct">
 	</center>
 	<br></br>
-	<br></br>
-	<br></br>
+
 <center>
 <a href="#" class="button" onclick="sendData()">Eliminar Producto</a>
 <br>

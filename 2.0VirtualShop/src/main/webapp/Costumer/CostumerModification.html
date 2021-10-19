@@ -25,9 +25,10 @@
 		var email = validarEmail(document.getElementById("txtEmail").value
 				.trim());
 		var valido = validate();
+		
 		if (valido) {
-			alert("Los datos son válidos")
-
+			alert("Los datos son válidos");
+			
 			var IDcard = document.getElementById("txtIDcard").value.trim();
 			var Name = document.getElementById("txtName").value.trim();
 			var Address = document.getElementById("txtAddress").value.trim();
@@ -36,8 +37,8 @@
 
 			var Delivery = new XMLHttpRequest();
 
-			var url = '/TiendaVirtualNewYork/ModifyUser';
-			var Parameters = "IDcard=" + IDcard + "&" + "Name=" + name + "&"
+			var url = '/TiendaVirtualNewYork/ModifyCostumer';
+			var Parameters = "IDcard=" + IDcard + "&" + "Name=" + Name + "&"
 					+ "Address=" + Address + "&" + "Phone=" + Phone + "&"
 					+ "Email=" + Email;
 			alert("Se enviaron los datos")
@@ -65,11 +66,11 @@
 	}
 
 	function validate() {
-		var txtPassword = document.getElementById("txtPassword");
+		var txtPassword = document.getElementById("txtName");
 		var txtIDcard = document.getElementById("txtIDcard");
 
 		if (txtPassword.value.length == 0 | txtIDcard.value.length == 0) {
-			alert("La cédula & contraseña deben ser cambios a cambiar")
+			alert("La cédula y/o nombre deben ser cambiados")
 			return false;
 		}
 
@@ -95,7 +96,7 @@
 			class="fondo" id="txtIDcard" name="IDcard"> <br> <br>
 
 		<label for="txtName">Nombre: </label> <input type="text" class="fondo"
-			id="txtNombre" name="Name"> <br> <br> <label
+			id="txtName" name="Name"> <br> <br> <label
 			for="txtAddress">Direccion: </label> <input type="text" class="fondo"
 			id="txtAddress" name="Address"> <br> <br> <label
 			for="txtPhone">Telefono: </label> <input type="number" class="fondo"

@@ -53,8 +53,8 @@ public class DAOsupplier {
 		BDconection Conect = new BDconection();
 		try {
 			Statement stmt = Conect.getBDconection().createStatement();
-			String modificar = "'NIT='" + modSupp.getNIT() +",address='" + modSupp.getAddress() + "',phone='" + modSupp.getPhone() + "',email='" + modSupp.getEmail() + "',website='" + modSupp.getWebsite();
-			stmt.executeUpdate("UPDATE proveedores" + " SET " + modificar + " WHERE NIT='" + modSupp.getNIT()+ "'");
+			String modificar = "NIT='" + modSupp.getNIT() +"' ,address='" + modSupp.getAddress() + "', phone='" + modSupp.getPhone() + "' ,email='" + modSupp.getEmail() + "', website='" + modSupp.getWebsite() + "'";
+			stmt.executeUpdate("UPDATE supplier " + " SET " + modificar + " WHERE NIT='" + modSupp.getNIT()+ "'");
 			String response = "Se modifico al proveedor " + modSupp.getNIT() + " el nombre (" + modSupp.getName() + "), la direccion ("+ modSupp.getAddress() +"), el telefono ("+modSupp.getPhone()+"), el E-mail (" + modSupp.getEmail()+") y el sitio web ("+modSupp.getWebsite() + ").";
 			return response;
 		} catch (SQLException e) {

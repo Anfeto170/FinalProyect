@@ -32,15 +32,15 @@
 			var Name = null;
 			var Email = document.getElementById("txtEmail").value.trim();
 			var Address = document.getElementById("txtAddress").value.trim();;
-			var Phone = document.getElementById("txtPhone").value.trim();
+			var Phone = document.getElementById("txtTelefono").value.trim();
 			var Website = document.getElementById("txtWebsite").value.trim();
-
+	
 			var Delivery = new XMLHttpRequest();
 
-			var url = '/TiendaVirtualNewYork/ModifyUser';
+			var url = '/TiendaVirtualNewYork/ModifySupplier';
 			var Parameters = "NIT=" + NitSupplier + "&" + "Name=" + Name + "&"
-					+ "Address=" + Address + "&"+ "Phone=" + Phone+ "&"+
-					"Email=" + Email + "&" +  "Website=" + Website;
+					+ "Address=" + Address + "&" + "Phone=" + Phone + "&"
+					+ "Email=" + Email + "&" + "Website=" + Website;
 			alert("Se enviaron los datos")
 
 			Delivery.open('POST', url, true);
@@ -58,7 +58,7 @@
 				}
 			}
 			Delivery.send(Parameters);
-
+	
 		} else {
 			alert("Los datos no son válidos")
 		}
@@ -66,11 +66,11 @@
 	}
 
 	function validate() {
-		var txtNitSupplier = document.getElementById("txtNitSupplier");
-		var txtEmail = document.getElementById("txtEmail");
+		var txtPassword = document.getElementById("txtEmail");
+		var txtIDcard = document.getElementById("txtNitSupplier");
 
 		if (txtPassword.value.length == 0 | txtIDcard.value.length == 0) {
-			alert("El NIT e Email deben ser va a cambiar")
+			alert("La cédula & contraseña deben ser cambios a cambiar")
 			return false;
 		}
 

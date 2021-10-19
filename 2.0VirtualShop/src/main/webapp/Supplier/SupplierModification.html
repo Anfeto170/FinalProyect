@@ -1,20 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Modificacion de proveedores</title>
-<link rel="stylesheet" href="/TiendaVirtualNewYork/Letra4.css"
-	media="all" />
-<link rel="stylesheet" href="/TiendaVirtualNewYork/EstiloTabla.css"
-	media="all" />
-<link rel="stylesheet" href="/TiendaVirtualNewYork/Letra5.css"
-	media="all" />
-<link rel="stylesheet" href="/TiendaVirtualNewYork/Letra8.css"
-	media="all" />
-<link rel="stylesheet" href="/TiendaVirtualNewYork/Titulo2.css"
-	media="all" />
+<link rel="stylesheet" href="/TiendaVirtualNewYork/Titulo3.css"	media="all" />
+<link rel="stylesheet" href="/TiendaVirtualNewYork/TituloHumo7.css"	media="all" />
+<link rel="stylesheet" href="/TiendaVirtualNewYork/F7.css" media="all" />
+<link rel="stylesheet" href="/TiendaVirtualNewYork/Botones.css" media="all" />
+<link rel="stylesheet" href="/TiendaVirtualNewYork/EstiloTabla6.css" media="all" />
+<link rel="shortcut icon" href="pp2.jpg">
 <script>
 	function validarEmail(valor) {
 		if (/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
@@ -87,17 +82,22 @@
 <font face="Comic Sans MS,arial">
 </head>
 <body>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
 	<div align="center">
 		<br></br>
 		<h1>Sección modificar proveedores</h1>
-		<br></br> <br></br>
-
+		<br></br> 
+		<br></br> 
+		<br></br>
 		<!--  El método post, hace que se ejectu get pero no muestra nada en URL -->
 		<label for="txtNitSupplier">Nit del proveedor: </label> <input type="number"
 			class="fondo" id="txtNitSupplier" name="NitSupplier"> <br> <br>
 			
 		<label for="txtAddress">Direccion: </label> <input type="text"
-			class="fondo4" id="txtAddress" name="Address"> <br></br> <br></br>
+			class="fondo4" id="txtAddress" name="Address"> <br></br> 
 		
 		<label for="txtPhone">Telefono: </label> <input type="number"
 			class="fondo" id="txtTelefono" name="Telefono"> <br> <br>
@@ -108,12 +108,18 @@
 		<label for="txtWebsite">Sitio web: </label> <input type="text"
 			class="fondo4" id="txtWebsite" name="Website"> <br></br> <br></br>
 			
-		<button onclick="sendData()" class="btnEffect1">Validar para
-			guardar</button>
+		<center>
+			<a href="#" class="button2" onclick="sendData()">Validar para guardar</a>
+		</center>
+		<br></br> 
 		<br></br>
-		<button onclick="location.href='/TiendaVirtualNewYork/User/Menu.html'"
-			class="btnEffect2">Menú Usuario</button>
+		<center>
+			<a href="#" class="button"
+				onclick="location.href='/TiendaVirtualNewYork/Supplier/Menu.html'">Menú Proveedor</a>
+		</center>
 	</div>
+	
+	
 	<link rel="stylesheet" href="/TiendaVirtualNewYork/Designxd.css"
 		media="all" />
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css'

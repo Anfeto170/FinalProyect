@@ -6,6 +6,7 @@ h1{
 	position: relative;
 	color: black;
 	font-family: 'Fredoka One', cursive;
+	font-size: 38px;
 }
 
 h1:after::before{
